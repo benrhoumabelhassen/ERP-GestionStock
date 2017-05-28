@@ -1,0 +1,215 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <f:view contentType="text/html">
+  <h:head>
+    <meta content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link rel="icon" type="image/png" href="plugins/images/favicon.png" />
+    <title>
+      ERP STOCK MANAGEMENT
+    </title>
+    <!--  Bootstrap Core CSS -->
+    <link href="hospital/eliteadmin-hospital/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="plugins/bower_components/bootstrap-extension/css/bootstrap-extension.css" rel="stylesheet" />
+    <!--  Menu CSS -->
+    <link href="plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet" />
+    <!--  morris CSS -->
+    <link href="plugins/bower_components/morrisjs/morris.css" rel="stylesheet" />
+    <!--  animation CSS -->
+    <link href="hospital/eliteadmin-hospital/css/animate.css" rel="stylesheet" />
+    <!--  Custom CSS -->
+    <link href="hospital/eliteadmin-hospital/css/style.css" rel="stylesheet" />
+    <!--  color CSS -->
+    <link href="hospital/eliteadmin-hospital/css/colors/megna.css" id="theme" rel="stylesheet" />
+    <!--  HTML5 Shim and Respond.js IE8 support of HTML5 elements and media
+      queries -->
+    <!--  WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--  [if lt IE 9]> <script
+      src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script
+      src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif] -->
+    <!--  Preloader -->
+  </h:head>
+  <h:body>
+    <div class="preloader">
+      <div class="cssload-speeding-wheel"></div>
+    </div>
+    <div id="wrapper">
+      
+      <ui:include src="menu.xhtml" />
+      <!--  Left navbar-header end -->
+      <!--  Page Content -->
+      <div id="page-wrapper">
+        <div class="container-fluid">
+          <div class="row bg-title">
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+              <h4 class="page-title">
+                ERP Order Management
+              </h4>
+            </div>
+            <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+              <ol class="breadcrumb">
+                <li class="active">
+                    Order Management
+                </li>
+              </ol>
+            </div>
+            <!--  /.col-lg-12 -->
+          </div>
+          <h:form style="box-shadow: 2px 2px 1px #888888;">
+              <c:if id="main" test="#{orderBean.showProd}">
+              <p:dataTable  var="prod" value="#{orderBean.prod}" rows="30"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="25,30,35">
+                    
+
+                    <p:column  headerText="Id">
+                        <h:outputText value="#{prod.id}" />
+                    </p:column>
+
+                    <p:column  headerText="Libelle">
+                        
+                        <h:outputText value="#{prod.libelle}" />
+                    </p:column>
+
+                    <p:column  headerText="Quantité" filterMatchMode="exact">
+                        
+                        <h:outputText value="#{prod.qte}" />
+                    </p:column>
+                    <p:column  headerText="Type" filterMatchMode="exact">
+                        
+                        <h:outputText value="#{prod.type}" />
+                    </p:column>
+                    
+                  <p:column headerText="Update">
+                      <center>
+                          <p:commandButton value="Select" icon="ui-icon-check" action="#{orderBeanRequest.selectProd(prod)}" >
+                          </p:commandButton>
+                          
+                      </center>
+                  </p:column>
+                </p:dataTable>
+              </c:if>
+              <c:if test="#{orderBean.showProv}">
+                  <p:dataTable  var="prov" value="#{providerBean.prov}" rows="30"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="25,30,35">
+                    
+
+                    <p:column  headerText="Id">
+                        <h:outputText value="#{prov.id}" />
+                    </p:column>
+
+                    <p:column  headerText="Nom">
+                        
+                        <h:outputText value="#{prov.nom}" />
+                    </p:column>
+
+                    <p:column  headerText="Adresse" filterMatchMode="exact">
+                        
+                        <h:outputText value="#{prov.adresse}" />
+                    </p:column>
+                    <p:column  headerText="Tel" filterMatchMode="exact">
+                        
+                        <h:outputText value="#{prov.telephone}" />
+                    </p:column>
+                    <p:column  headerText="Delete">
+                        <center>
+                            <p:commandButton value="Select" action="#{orderBeanRequest.selectProv(prov,orderBean.idprod)}" icon="ui-icon-check" />
+                        </center>
+                    </p:column>
+                </p:dataTable>
+              </c:if>
+              <c:if test="#{orderBean.showForm}">
+                  <div style="padding: 5px;background:white;">
+                        <table style="width:100%;color:black;">
+                        <tr style="width:100%;">
+                            <td style="width: 20%;padding: 5px;"><p:outputLabel for="id" value="Sales Id"/></td>
+                            <td style="width: 80%;padding: 5px;"><p:inputText style="width:80%;box-shadow: inset 0 0px 0px #8f8f8f !important;" id="id" value="#{orderBean.v.id}" disabled="true"/></td>
+                        </tr>
+                        <tr style="width:100%;">
+                            <td style="width: 20%;padding: 5px;"><p:outputLabel value="Sales Price"/></td>
+                            <td style="width: 80%;padding: 5px;"><p:inputText style="width:80%;box-shadow: inset 0 0px 0px #8f8f8f !important;" value="#{orderBean.v.prixAchat}"/></td>
+                        </tr>
+                        <tr style="width:100%;">
+                            <td style="width: 20%;padding: 5px;"><p:outputLabel value="Sales Quantity"/></td>
+                            <td style="width: 80%;padding: 5px;"><p:inputText style="width:80%;box-shadow: inset 0 0px 0px #8f8f8f !important;" value="#{orderBean.v.qteAchete}"/></td>
+                        </tr>
+                        <tr style="width:100%;">
+                            <td style="width: 20%;padding: 5px;"><p:outputLabel value="Sales Date"/></td>
+                            <td style="width: 80%;padding: 5px;"><p:calendar id="popup" style="width:80%;box-shadow: inset 0 0px 0px #8f8f8f !important;" value="#{orderBean.v.dateAchat}"/></td>
+                        </tr>
+                        <tr style="width:100%;">
+                            <td style="width: 20%;padding: 5px;"><p:outputLabel value="Sales Product"/></td>
+                            <td style="width: 80%;padding: 5px;"><p:inputText  style="width:80%;box-shadow: inset 0 0px 0px #8f8f8f !important;" value="#{orderBean.v.produits.libelle}" disabled="true"/></td>
+                        </tr>
+                        <tr style="width:100%;">
+                            <td style="width: 20%;padding: 5px;"><p:outputLabel value="Sales Client"/></td>
+                            <td style="width: 80%;padding: 5px;"><p:inputText  style="width:80%;box-shadow: inset 0 0px 0px #8f8f8f !important;" value="#{orderBean.v.fournisseurs.nom}" disabled="true"/></td>
+                        </tr>
+                        <tr style="width:100%;">
+                            <td style="width: 20%;padding: 5px;"></td>
+                            <td style="width: 80%;padding: 5px;"><p:commandButton action="#{orderBeanRequest.addV(orderBean.v)}" ajax="false" value="Add" style="margin-left: 5px;width: 100px;height: 30px;" styleClass="ui-priority-primary" /></td>
+                        </tr>
+                    </table>
+                      </div>
+              </c:if>
+            </h:form>
+        </div>
+      </div>
+      <!--  /#page-wrapper -->
+    </div>
+    <!--  /#wrapper -->
+    <!--  jQuery -->
+     <!--  Bootstrap Core JavaScript --> 
+     <script
+    src="hospital/eliteadmin-hospital/bootstrap/dist/js/tether.min.js"
+    type="text/javascript"></script> 
+     <script
+    src="hospital/eliteadmin-hospital/bootstrap/dist/js/bootstrap.js"
+    type="text/javascript"></script> 
+     <script
+    src="plugins/bower_components/bootstrap-extension/js/bootstrap-extension.min.js"
+    type="text/javascript"></script>
+     <!--  Menu Plugin JavaScript --> 
+     <script
+    src="plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"
+    type="text/javascript"></script>
+     <!-- slimscroll JavaScript --> 
+     <script
+    src="hospital/eliteadmin-hospital/js/jquery.slimscroll.js"
+    type="text/javascript"></script>
+    <script
+    src="hospital/eliteadmin-hospital/js/waves.js" type="text/javascript"></script>
+     <!-- Morris JavaScript --> 
+     <script
+    src="plugins/bower_components/raphael/raphael-min.js" type="text/javascript"></script> 
+     <script
+    src="plugins/bower_components/morrisjs/morris.js" type="text/javascript"></script>
+     <!--  jQuery peity --> 
+     <script
+    src="plugins/bower_components/jquery-sparkline/jquery.sparkline.min.js"
+    type="text/javascript"></script>
+     <script
+    src="plugins/bower_components/peity/jquery.peity.min.js"
+    type="text/javascript"></script> 
+     <script
+    src="plugins/bower_components/peity/jquery.peity.init.js"
+    type="text/javascript"></script>
+     <!--  Custom Theme JavaScript --> 
+     <script
+    src="hospital/eliteadmin-hospital/js/custom.min.js" type="text/javascript"></script> 
+    
+     
+  </h:body>
+       </f:view>
+</html>

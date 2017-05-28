@@ -1,0 +1,205 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <f:view contentType="text/html">
+        <h:head>
+    <meta content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link rel="icon" type="image/png" href="plugins/images/favicon.png" />
+    <title>
+      ERP STOCK MANAGEMENT
+    </title>
+    <!--  Bootstrap Core CSS -->
+    <link href="hospital/eliteadmin-hospital/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="plugins/bower_components/bootstrap-extension/css/bootstrap-extension.css" rel="stylesheet" />
+    <!--  Menu CSS -->
+    <link href="plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet" />
+    <!--  morris CSS -->
+    <link href="plugins/bower_components/morrisjs/morris.css" rel="stylesheet" />
+    <!--  animation CSS -->
+    <link href="hospital/eliteadmin-hospital/css/animate.css" rel="stylesheet" />
+    <!--  Custom CSS -->
+    <link href="hospital/eliteadmin-hospital/css/style.css" rel="stylesheet" />
+    <!--  color CSS -->
+    <link href="hospital/eliteadmin-hospital/css/colors/megna.css" id="theme" rel="stylesheet" />
+    <!--  HTML5 Shim and Respond.js IE8 support of HTML5 elements and media
+      queries -->
+    <!--  WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--  [if lt IE 9]> <script
+      src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script
+      src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif] -->
+    <!--  Preloader -->
+  </h:head>
+  <h:body>
+      <f:event type="preRenderView" listener="#{loginBean.checkAuthentication}" />
+        <!--  Navigation -->
+      <div class="navbar-header">
+          <a id="cl" class="navbar-toggle hidden-sm hidden-md hidden-lg " style="color:white;cursor: pointer;"
+        ><i class="ti-menu"></i></a>
+        <div class="top-left-part">
+          <a class="logo" href=""><b><img
+          src="plugins/images/eliteadmin-logo.png" alt="home" /></b><span
+          class="hidden-xs"><strong>ERP</strong> GSTOCK</span></a>
+        </div>
+        
+      </div>
+        <div class="navbar-default sidebar" id="sidebar" style="margin-top:60px;padding-top: 0 !important;">
+        <div class="sidebar-nav navbar-collapse slimscrollsidebar" id="sidebar-nav">
+          <ul class="nav" id="side-menu">
+            <li class="sidebar-search hidden-sm hidden-md hidden-lg">
+              <!--  input-group -->
+              <div class="input-group custom-search-form">
+                <input type="text" class="form-control" /> <span
+                class="input-group-btn"> <button class="btn btn-default"
+                type="button"> <i class="fa fa-search"></i> </button>
+                </span>
+              </div>
+              <!--  /input-group -->
+            </li>
+            <li class="user-pro">
+                <a href="#" class="waves-effect">
+                  <span style="font-size: 12px;" class="hide-menu">#{loginBean.user.toString()}</span> </a>
+              <ul class="nav nav-second-level">
+                <li>
+                    <p:link outcome="profil" value="My Profile"></p:link>
+                </li>
+                <li>
+                    <h:form>
+                        <p:commandLink id="ajax" action="#{loginBean.logout()}">
+                            <h:outputText value="Logout" />
+                        </p:commandLink>
+                    </h:form>
+                </li>
+              </ul>
+            </li>
+            <li>
+                    <p:commandLink class="waves-effect"  action="index.xhtml?faces-redirect=true">
+                            <i class="ti-dashboard p-r-10"></i>
+                            <span class="hide-menu">Dashboard</span>
+                    </p:commandLink>
+            </li>
+            <li>
+              <p:commandLink class="waves-effect">
+                            <i class="icon-envelope p-r-10"></i>
+                            <span class="hide-menu">Product</span>
+                            
+              </p:commandLink>
+              <ul class="nav nav-second-level">
+                <li>
+                    <p:link outcome="produit" value="All Products">
+                    </p:link>
+                </li>
+                <li>
+                    <p:link outcome="produit-add" value="Add Product">
+                    </p:link>
+                </li>
+              </ul>
+            </li>
+            
+            <li>
+              <p:commandLink class="waves-effect">
+                            <i class="fa fa-user-md p-r-10"></i>
+                            <span class="hide-menu">Providers</span>
+                            
+              </p:commandLink>
+              <ul class="nav nav-second-level">
+                <li>
+                    <p:link outcome="provider" value="All Providers">
+                        
+                    </p:link>
+                </li>
+                <li>
+                    <p:link outcome="provider-add" value="Add Provider">
+                        
+                    </p:link>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <p:commandLink class="waves-effect">
+                            <i class="icon-wallet p-r-10"></i>
+                            <span class="hide-menu">Sales</span>
+                            
+              </p:commandLink>
+              <ul class="nav nav-second-level">
+                <li>
+                    <p:link outcome="sales" value="All Sales">
+                        
+                    </p:link>
+                </li>
+                <li>
+                    <p:link outcome="sales-add" value="Add Sale">
+                        
+                    </p:link>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <p:commandLink class="waves-effect">
+                            <i class="icon-chart p-r-10"></i>
+                            <span class="hide-menu">Orders</span>
+                            
+              </p:commandLink>
+              <ul class="nav nav-second-level">
+                <li>
+                    <p:link outcome="order" value="All Orders">
+                        
+                    </p:link>
+                </li>
+                <li>
+                    <p:link outcome="order-add" value="Add Order">
+                        
+                    </p:link>
+                </li>
+              </ul>
+            </li>
+            <li>
+                <p:commandLink class="waves-effect">
+                            <i class="icon-people p-r-10"></i>
+                            <span class="hide-menu">Clients</span>
+                            
+              </p:commandLink>
+                
+             <ul class="nav nav-second-level">
+                <li>
+                    <p:link outcome="client" value="All Clients">
+                        
+                    </p:link>
+                </li>
+                <li>
+                    <p:link outcome="client-add" value="Add Client">
+                        
+                    </p:link>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+        <script type="text/javascript">
+        $("#sidebar").css("height","auto");
+         $("#cl").click(function(){
+             if($(".sidebar-nav").css("height") === "100%"){
+                 $("#sidebar").css("margin-top","0");
+                 $(".navbar-default").removeClass("navbar-default");
+                 $(".sidebar-nav").addClass("show");
+                 
+             }else{
+                 $("#sidebar").css("margin-top","60px");
+                 $(".sidebar").addClass("navbar-default");
+                 $(".sidebar-nav").removeClass("show");
+                 $(".sidebar-nav").css("height","100%");
+                 $(".slimScrollDiv").css("height","100%");
+             }
+                 
+         });
+     </script>
+  </h:body>
+    </f:view>
+</html>

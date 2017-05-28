@@ -1,0 +1,182 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+  <h:head>
+    <meta content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link rel="icon" type="image/png" href="plugins/images/favicon.png" />
+    <title>
+      ERP STOCK MANAGEMENT
+    </title>
+    <!--  Bootstrap Core CSS -->
+    <link href="hospital/eliteadmin-hospital/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="plugins/bower_components/bootstrap-extension/css/bootstrap-extension.css" rel="stylesheet" />
+    <!--  Menu CSS -->
+    <link href="plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet" />
+    <!--  morris CSS -->
+    <link href="plugins/bower_components/morrisjs/morris.css" rel="stylesheet" />
+    <!--  animation CSS -->
+    <link href="hospital/eliteadmin-hospital/css/animate.css" rel="stylesheet" />
+    <!--  Custom CSS -->
+    <link href="hospital/eliteadmin-hospital/css/style.css" rel="stylesheet" />
+    <!--  color CSS -->
+    <link href="hospital/eliteadmin-hospital/css/colors/megna.css" id="theme" rel="stylesheet" />
+    <!--  HTML5 Shim and Respond.js IE8 support of HTML5 elements and media
+      queries -->
+    <!--  WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--  [if lt IE 9]> <script
+      src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script
+      src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif] -->
+    <!--  Preloader -->
+  </h:head>
+  <h:body>
+    <div class="preloader">
+      <div class="cssload-speeding-wheel"></div>
+    </div>
+    <div id="wrapper">
+      
+      <ui:include src="menu.xhtml" />
+      <!--  Left navbar-header end -->
+      <!--  Page Content -->
+      <div id="page-wrapper">
+        <div class="container-fluid">
+          <div class="row bg-title">
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+              <h4 class="page-title">
+                ERP Dashboard
+              </h4>
+            </div>
+            <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+              <ol class="breadcrumb">
+                <li class="active">
+                  Dashboard
+                </li>
+              </ol>
+            </div>
+            <!--  /.col-lg-12 -->
+          </div>
+          <!--  row -->
+          <div class="row">
+            <div class="col-md-3 col-sm-6">
+              <div class="white-box">
+                <div class="r-icon-stats">
+                  <i class="ti-package bg-megna"></i>
+                  <div class="bodystate">
+                    <h4>
+                      #{dashboardBean.nbrproduit}
+                    </h4>
+                    <span class="text-muted">Nbr of Products</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+              <div class="white-box">
+                <div class="r-icon-stats">
+                  <i class="ti-user bg-info"></i>
+                  <div class="bodystate">
+                    <h4>
+                      #{dashboardBean.nbrprovider}
+                    </h4>
+                    <span class="text-muted">Nbr of Providers</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+              <div class="white-box">
+                <div class="r-icon-stats">
+                  <i class="ti-wallet bg-success"></i>
+                  <div class="bodystate">
+                    <h4>
+                      #{dashboardBean.nbrclient}
+                    </h4>
+                    <span class="text-muted">Nbr of Clients</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+              <div class="white-box">
+                <div class="r-icon-stats">
+                  <i class="ti-wallet bg-inverse"></i>
+                  <div class="bodystate">
+                    <h4>
+                      $#{dashboardBean.totalearning}
+                    </h4>
+                    <span class="text-muted">Total Earning</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--  /row -->
+          <div class="row" style="background: white;">
+            <div class="col-sm-12">
+                <p:chart type="bar" model="#{dashboardBean.barModel}" style="height:100%"/>
+            </div>
+          </div>
+          <h:outputScript>
+                        function chartExtender() {   
+                         this.cfg.seriesDefaults.rendererOptions.varyBarColor = true;
+                        }
+          </h:outputScript>
+          <div class="row" style="background: white;">
+            <div class="col-sm-12">
+                <p:chart type="line" model="#{dashboardBean.lineModel1}" style="height:300px;"/>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      <!--  /#page-wrapper -->
+    </div>
+    <!--  /#wrapper -->
+    <!--  jQuery -->
+     <!--  Bootstrap Core JavaScript --> 
+     <script
+    src="hospital/eliteadmin-hospital/bootstrap/dist/js/tether.min.js"
+    type="text/javascript"></script> 
+     <script
+    src="hospital/eliteadmin-hospital/bootstrap/dist/js/bootstrap.js"
+    type="text/javascript"></script> 
+     <script
+    src="plugins/bower_components/bootstrap-extension/js/bootstrap-extension.min.js"
+    type="text/javascript"></script>
+     <!--  Menu Plugin JavaScript --> 
+     <script
+    src="plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"
+    type="text/javascript"></script>
+     <!-- slimscroll JavaScript --> 
+     <script
+    src="hospital/eliteadmin-hospital/js/jquery.slimscroll.js"
+    type="text/javascript"></script>
+     <!-- Wave Effects --> 
+     <script
+    src="hospital/eliteadmin-hospital/js/waves.js" type="text/javascript"></script>
+     <!-- Morris JavaScript --> 
+     
+     <!--  Sparkline chart JavaScript --> 
+     <script
+    src="plugins/bower_components/jquery-sparkline/jquery.sparkline.min.js"
+    type="text/javascript"></script>
+     <!--  jQuery peity --> 
+     <script
+    src="plugins/bower_components/peity/jquery.peity.min.js"
+    type="text/javascript"></script> 
+     <script
+    src="plugins/bower_components/peity/jquery.peity.init.js"
+    type="text/javascript"></script>
+     <!--  Custom Theme JavaScript --> 
+     <script
+    src="hospital/eliteadmin-hospital/js/custom.min.js" type="text/javascript"></script> 
+   
+     
+  </h:body>
+</html>
