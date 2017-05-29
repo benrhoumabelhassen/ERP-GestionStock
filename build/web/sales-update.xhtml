@@ -67,27 +67,27 @@
               <table style="width:100%;">
                   <tr style="width:100%;">
                       <td style="width: 20%;padding: 5px;"><p:outputLabel for="id" value="Sales Id"/></td>
-                      <td style="width: 80%;padding: 5px;"><p:inputText style="width:80%;box-shadow: inset 0 0px 0px #8f8f8f !important;" id="id" value="#{salesBean.v.id}" disabled="true"/></td>
+                      <td style="width: 80%;padding: 5px;"><p:inputText style="width:80%;box-shadow: inset 0 0px 0px #8f8f8f !important;" id="id" value="#{salesBean.vente.id}" disabled="true"/></td>
                   </tr>
                   <tr style="width:100%;">
                       <td style="width: 20%;padding: 5px;"><p:outputLabel value="Sales Price"/></td>
-                      <td style="width: 80%;padding: 5px;"><p:inputText style="width:80%;box-shadow: inset 0 0px 0px #8f8f8f !important;" value="#{salesBean.v.prixVente}"/></td>
+                      <td style="width: 80%;padding: 5px;"><p:inputText style="width:80%;box-shadow: inset 0 0px 0px #8f8f8f !important;" value="#{salesBean.vente.prixVente}"/></td>
                   </tr>
                   <tr style="width:100%;">
                       <td style="width: 20%;padding: 5px;"><p:outputLabel value="Sales Quantity"/></td>
-                      <td style="width: 80%;padding: 5px;"><p:inputText style="width:80%;box-shadow: inset 0 0px 0px #8f8f8f !important;" value="#{salesBean.v.qteVendue}"/></td>
+                      <td style="width: 80%;padding: 5px;"><p:inputText style="width:80%;box-shadow: inset 0 0px 0px #8f8f8f !important;" value="#{salesBean.vente.qteVendue}"/></td>
                   </tr>
                   <tr style="width:100%;">
                       <td style="width: 20%;padding: 5px;"><p:outputLabel value="Sales Product"/></td>
-                      <td style="width: 80%;padding: 5px;"><p:inputText  style="width:80%;box-shadow: inset 0 0px 0px #8f8f8f !important;" value="#{salesBean.v.produits.libelle}" disabled="true"/></td>
+                      <td style="width: 80%;padding: 5px;"><p:inputText  style="width:80%;box-shadow: inset 0 0px 0px #8f8f8f !important;" value="#{salesBean.vente.produits.libelle}" disabled="true"/></td>
                   </tr>
                   <tr style="width:100%;">
                       <td style="width: 20%;padding: 5px;"><p:outputLabel value="Sales Client"/></td>
-                      <td style="width: 80%;padding: 5px;"><p:inputText  style="width:80%;box-shadow: inset 0 0px 0px #8f8f8f !important;" value="#{salesBean.v.clients.nom}" disabled="true"/></td>
+                      <td style="width: 80%;padding: 5px;"><p:inputText  style="width:80%;box-shadow: inset 0 0px 0px #8f8f8f !important;" value="#{salesBean.vente.clients.nom}" disabled="true"/></td>
                   </tr>
                   <tr style="width:100%;">
                       <td style="width: 20%;padding: 5px;"></td>
-                      <td style="width: 80%;padding: 5px;"><p:button style="width: 100px;height: 30px;" outcome="sales" value="Return"/><p:commandButton action="#{salesBeanRequest.updateV(salesBean.v)}" ajax="false" value="Update" style="margin-left: 5px;width: 100px;height: 30px;" styleClass="ui-priority-primary" /></td>
+                      <td style="width: 80%;padding: 5px;"><p:button style="width: 100px;height: 30px;" outcome="sales" value="Return"/><p:commandButton action="#{salesBeanRequest.updateVente(salesBean.vente)}" ajax="false" value="Update" style="margin-left: 5px;width: 100px;height: 30px;" styleClass="ui-priority-primary" /></td>
                   </tr>
               </table>
               

@@ -69,19 +69,19 @@
                   
                   <tr style="width:100%;">
                       <td style="width: 20%;padding: 5px;"><p:outputLabel value="Provider Name"/></td>
-                      <td style="width: 80%;padding: 5px;"><p:inputText style="width:80%;box-shadow: inset 0 0px 0px #8f8f8f !important;" value="#{providerBean.p.nom}"/></td>
+                      <td style="width: 80%;padding: 5px;"><p:inputText style="width:80%;box-shadow: inset 0 0px 0px #8f8f8f !important;" value="#{providerBean.provider.nom}"/></td>
                   </tr>
                   <tr style="width:100%;">
                       <td style="width: 20%;padding: 5px;"><p:outputLabel value="Provider Tel"/></td>
-                      <td style="width: 80%;padding: 5px;"><p:inputText style="width:80%;box-shadow: inset 0 0px 0px #8f8f8f !important;" value="#{providerBean.p.telephone}"/></td>
+                      <td style="width: 80%;padding: 5px;"><p:inputText style="width:80%;box-shadow: inset 0 0px 0px #8f8f8f !important;" value="#{providerBean.provider.telephone}"/></td>
                   </tr>
                   <tr style="width:100%;">
                       <td style="width: 20%;padding: 5px;"><p:outputLabel value="Provider Adresse"/></td>
-                      <td style="width: 80%;padding: 5px;"><p:inputTextarea  style="width:80%;box-shadow: inset 0 0px 0px #8f8f8f !important;" value="#{providerBean.p.adresse}"/></td>
+                      <td style="width: 80%;padding: 5px;"><p:inputTextarea  style="width:80%;box-shadow: inset 0 0px 0px #8f8f8f !important;" value="#{providerBean.provider.adresse}"/></td>
                   </tr>
                   <tr style="width:100%;">
                       <td style="width: 20%;padding: 5px;"></td>
-                      <td style="width: 80%;padding: 5px;"><p:commandButton action="#{providerBeanRequest.addP(providerBean.p)}" ajax="false" value="Add" style="margin-left: 5px;width: 100px;height: 30px;" styleClass="ui-priority-primary" /></td>
+                      <td style="width: 80%;padding: 5px;"><p:commandButton action="#{providerBeanRequest.addProvider(providerBean.provider)}" ajax="false" value="Add" style="margin-left: 5px;width: 100px;height: 30px;" styleClass="ui-priority-primary" /></td>
                   </tr>
               </table>
               

@@ -27,15 +27,15 @@ import javax.servlet.http.HttpServletRequest;
 @ViewScoped
 public class clientBean implements Serializable{
     private List<Clients> clients;
-    private Clients c;
+    private Clients client;
     @PostConstruct
     public void init() {
         clients = ClientDao.getAll();
-        c = new Clients();
+        client = new Clients();
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         if(request!=null){
             if(request.getParameter("id") != null){
-                c = ClientDao.findById(Integer.parseInt(request.getParameter("id")));
+                client = ClientDao.findById(Integer.parseInt(request.getParameter("id")));
             }
         }
     }
@@ -48,12 +48,12 @@ public class clientBean implements Serializable{
         this.clients = clients;
     }
 
-    public Clients getC() {
-        return c;
+    public Clients getClient() {
+        return client;
     }
 
-    public void setC(Clients c) {
-        this.c = c;
+    public void setClient(Clients c) {
+        this.client = c;
     }
 
 }

@@ -68,19 +68,19 @@
                   
                   <tr style="width:100%;">
                       <td style="width: 20%;padding: 5px;"><p:outputLabel value="Product Libelle"/></td>
-                      <td style="width: 80%;padding: 5px;"><p:inputText style="width:80%;box-shadow: inset 0 0px 0px #8f8f8f !important;" value="#{productBean.p.libelle}"/></td>
+                      <td style="width: 80%;padding: 5px;"><p:inputText style="width:80%;box-shadow: inset 0 0px 0px #8f8f8f !important;" value="#{productBean.produit.libelle}"/></td>
                   </tr>
                   <tr style="width:100%;">
                       <td style="width: 20%;padding: 5px;"><p:outputLabel value="Product Quantity"/></td>
-                      <td style="width: 80%;padding: 5px;"><p:inputText style="width:80%;box-shadow: inset 0 0px 0px #8f8f8f !important;" value="#{productBean.p.qte}"/></td>
+                      <td style="width: 80%;padding: 5px;"><p:inputText style="width:80%;box-shadow: inset 0 0px 0px #8f8f8f !important;" value="#{productBean.produit.qte}"/></td>
                   </tr>
                   <tr style="width:100%;">
                       <td style="width: 20%;padding: 5px;"><p:outputLabel value="Product Type"/></td>
-                      <td style="width: 80%;padding: 5px;"><p:inputTextarea  style="width:80%;box-shadow: inset 0 0px 0px #8f8f8f !important;" value="#{productBean.p.type}"/></td>
+                      <td style="width: 80%;padding: 5px;"><p:inputTextarea  style="width:80%;box-shadow: inset 0 0px 0px #8f8f8f !important;" value="#{productBean.produit.type}"/></td>
                   </tr>
                   <tr style="width:100%;">
                       <td style="width: 20%;padding: 5px;"></td>
-                      <td style="width: 80%;padding: 5px;"><p:commandButton action="#{productBeanRequest.addP(productBean.p)}" ajax="false" value="Add" style="margin-left: 5px;width: 100px;height: 30px;" styleClass="ui-priority-primary" /></td>
+                      <td style="width: 80%;padding: 5px;"><p:commandButton action="#{productBeanRequest.addProduit(productBean.produit)}" ajax="false" value="Add" style="margin-left: 5px;width: 100px;height: 30px;" styleClass="ui-priority-primary" /></td>
                   </tr>
                   <tr style="width:100%;">
                       <td style="width: 20%;padding: 5px;"></td>

@@ -108,7 +108,7 @@
                   </p:column>
                   <p:column headerText="Bill">
                       <center>
-                          <p:commandButton value="Download Bill"  ajax="false" onclick="this.form.target='_blank'" action="#{loginBean.createPdf(prod.produits.libelle,prod.produits.type,prod.prixVente,prod.qteVendue,prod.dateVente,prod.clients.nom,prod.clients.telephone,prod.clients.adresse,prod.id)}" icon="ui-icon-check" />
+                          <p:commandButton value="Download Bill"  ajax="false" onclick="this.form.target='_blank'" action="#{loginBean.createFactureAchat(prod.produits.libelle,prod.produits.type,prod.prixVente,prod.qteVendue,prod.dateVente,prod.clients.nom,prod.clients.telephone,prod.clients.adresse,prod.id)}" icon="ui-icon-check" />
                       </center>
                   </p:column>
                 </p:dataTable>

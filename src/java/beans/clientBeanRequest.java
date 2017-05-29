@@ -17,19 +17,19 @@ import javax.inject.Named;
 @Named
 @RequestScoped
 public class clientBeanRequest {
-    public String delete(Clients p){
-        ClientDao.delete(p);
+    public String delete(Clients client){
+        ClientDao.delete(client);
         return "client.xhtml?faces-redirect=true";
     }
-    public String update(int id){
-        return "client-update.xhtml?faces-redirect=true&id="+id;
+    public String update(int idclient){
+        return "client-update.xhtml?faces-redirect=true&id="+idclient;
     }
-    public String updateC(Clients c){
-        ClientDao.update(c);
+    public String updateC(Clients client){
+        ClientDao.update(client);
         return "client.xhtml?faces-redirect=true";
     }
-    public String addC(Clients c){
-        ClientDao.insert(c);
+    public String addC(Clients client){
+        ClientDao.insert(client);
         return "client.xhtml?faces-redirect=true"; 
     }
 }

@@ -28,40 +28,40 @@ import org.primefaces.event.FileUploadEvent;
 @Named
 @ViewScoped
 public class productBean implements Serializable{
-    private List<Produits> prod;
-    private Produits p;
+    private List<Produits> produits;
+    private Produits produit;
     @PostConstruct
     public void init() {
-        prod = ProduitsDao.getAll();
-        p = new Produits();
+        produits = ProduitsDao.getAll();
+        produit = new Produits();
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         String id= null;
         if(request!=null){
             if(request.getParameter("id") != null){
                 id= request.getParameter("id");
-                p = ProduitsDao.findById(Integer.parseInt(id));
+                produit = ProduitsDao.findById(Integer.parseInt(id));
             }
         }
     }
 
-    public List<Produits> getProd() {
-        return prod;
+    public List<Produits> getProduits() {
+        return produits;
     }
 
-    public void setProd(List<Produits> prod) {
-        this.prod = prod;
+    public void setProduits(List<Produits> produits) {
+        this.produits = produits;
     }
 
-    public Produits getP() {
-        return p;
+    public Produits getProduit() {
+        return produit;
     }
 
-    public void setP(Produits p) {
-        this.p = p;
+    public void setProduit(Produits produit) {
+        this.produit = produit;
     }
-public void handleFileUpload(FileUploadEvent event) {
-        new File("/" + p.getLibelle()).mkdirs();
-        File result = new File("/upload/"+ p.getLibelle() + "/" + event.getFile().getFileName());
+    public void handleFileUpload(FileUploadEvent event) {
+        new File("/" + produit.getLibelle()).mkdirs();
+        File result = new File("/upload/"+ produit.getLibelle() + "/" + event.getFile().getFileName());
 
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(result);

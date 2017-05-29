@@ -9,14 +9,11 @@ import dao.ClientDao;
 import dao.ProduitsDao;
 import dao.VentesDao;
 import entity.Clients;
-import entity.Fournisseurs;
 import entity.Produits;
 import entity.Ventes;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.view.ViewScoped;
@@ -33,7 +30,7 @@ public class salesBean implements Serializable{
     private List<Ventes> sales;
     private List<Produits> prod;
     private List<Clients> prov;
-    private Ventes v;
+    private Ventes vente;
     private int idprod;
     private int idprov;
     private boolean showProd;
@@ -47,9 +44,9 @@ public class salesBean implements Serializable{
             if(request.getParameter("idprov") != null){
                 idprov= Integer.parseInt(request.getParameter("idprov"));
                 idprod= Integer.parseInt(request.getParameter("idprod"));
-                v = new Ventes();
-                v.setClients(ClientDao.findById(idprov));
-                v.setProduits(ProduitsDao.findById(idprod));
+                vente = new Ventes();
+                vente.setClients(ClientDao.findById(idprov));
+                vente.setProduits(ProduitsDao.findById(idprod));
                 showProv = false;
                 showProd = false;
                 showForm = true;
@@ -66,7 +63,7 @@ public class salesBean implements Serializable{
                 showForm = false;
             }
             if(request.getParameter("id") != null){
-                v = VentesDao.findById(Integer.parseInt(request.getParameter("id")));
+                vente = VentesDao.findById(Integer.parseInt(request.getParameter("id")));
             }else{
                 sales = VentesDao.getAll();
             }
@@ -81,12 +78,12 @@ public class salesBean implements Serializable{
         this.showForm = showForm;
     }
 
-    public Ventes getV() {
-        return v;
+    public Ventes getVente() {
+        return vente;
     }
 
-    public void setV(Ventes v) {
-        this.v = v;
+    public void setVente(Ventes vente) {
+        this.vente = vente;
     }
 
   

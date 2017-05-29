@@ -23,19 +23,19 @@ import java.io.InputStream;
 @Named
 @RequestScoped
 public class productBeanRequest {
-    public String delete(Produits p){
-        ProduitsDao.delete(p);
+    public String delete(Produits produit){
+        ProduitsDao.delete(produit);
         return "produit.xhtml?faces-redirect=true";
     }
     public String update(int id){
         return "produit-update.xhtml?faces-redirect=true&id="+id;
     }
-    public String updateP(Produits p){
-        ProduitsDao.update(p);
+    public String updateProduit(Produits produit){
+        ProduitsDao.update(produit);
         return "produit.xhtml?faces-redirect=true";
     }
-    public String addP(Produits p){
-        ProduitsDao.insert(p);
+    public String addProduit(Produits produit){
+        ProduitsDao.insert(produit);
         return "produit.xhtml?faces-redirect=true"; 
     }
     

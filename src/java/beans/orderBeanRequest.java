@@ -19,25 +19,25 @@ import javax.inject.Named;
 @Named
 @RequestScoped
 public class orderBeanRequest {
-    public String selectProd(Produits p) {
-        return "order-add.xhtml?faces-redirect=true&idprod="+p.getId();
+    public String selectProd(Produits produit) {
+        return "order-add.xhtml?faces-redirect=true&idprod="+produit.getId();
     }
-    public String selectProv(Fournisseurs p,int idprod) {
-        return "order-add.xhtml?faces-redirect=true&idprod="+idprod+"&idprov="+p.getId();
+    public String selectProv(Fournisseurs provider,int idprod) {
+        return "order-add.xhtml?faces-redirect=true&idprod="+idprod+"&idprov="+provider.getId();
     }
     public String delete(Achats v){
         AchatDao.delete(v);
         return "order.xhtml?faces-redirect=true";
     }
-    public String update(Achats v){
-        return "order-update.xhtml?faces-redirect=true&id="+v.getId();
+    public String update(Achats achat){
+        return "order-update.xhtml?faces-redirect=true&id="+achat.getId();
     }
-    public String updateV(Achats v){
-        AchatDao.update(v);
+    public String updateV(Achats achat){
+        AchatDao.update(achat);
         return "order.xhtml?faces-redirect=true";
     }
-    public String addV(Achats v){
-        AchatDao.insert(v);
+    public String addV(Achats achat){
+        AchatDao.insert(achat);
         return "order.xhtml?faces-redirect=true";
     }
 }

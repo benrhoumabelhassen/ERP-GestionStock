@@ -19,33 +19,19 @@ import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
 import dao.loginDao;
-import entity.Users;
 import entity.Utilisateurs;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.Date;
-import javax.activation.MimetypesFileTypeMap;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletResponse;
-import org.primefaces.event.FileUploadEvent;
-import org.primefaces.model.DefaultStreamedContent;
-import org.primefaces.model.StreamedContent;
 import org.primefaces.model.UploadedFile;
-import org.xhtmlrenderer.pdf.ITextRenderer;
-import sun.font.FontFamily;
 /**
  *
  * @author benrh
@@ -58,7 +44,6 @@ public class loginBean implements
     private String password;
     static Utilisateurs user;
     private UploadedFile file;
-    private boolean testlogin;
 
     
     
@@ -85,7 +70,7 @@ public class loginBean implements
         FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath() + "/login.xhtml");
     }
 
-    public void createPdf(String libelle,String type,BigDecimal prixVente,String qteVendue,Date dateVente,String nom,String telephone,String adresse,int id) throws DocumentException, BadElementException, IOException {
+    public void createFactureVente(String libelle,String type,BigDecimal prixVente,String qteVendue,Date dateVente,String nom,String telephone,String adresse,int id) throws DocumentException, BadElementException, IOException {
         Document document = new Document(PageSize.A4.rotate(), 50, 50, 50, 50);
         ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
         HttpServletResponse response = (HttpServletResponse)externalContext.getResponse();
@@ -98,62 +83,58 @@ public class loginBean implements
         image2.setAlignment(Image.MIDDLE);
         document.add(image1);
         document.add(image2);
-        Font f=new Font(Font.BOLD,30.0f,Font.UNDERLINE);
-        Paragraph paragraph = new Paragraph("Facture N° "+id,f);
-        paragraph.setSpacingBefore(50);
-        paragraph.setAlignment(Paragraph.ALIGN_CENTER);
-        document.add(paragraph);
-        Anchor anchorTarget = new Anchor("Provider Name: "+nom);
+        Font font=new Font(Font.BOLD,30.0f,Font.UNDERLINE);
+        Paragraph numfacture = new Paragraph("Facture N° "+id,font);
+        numfacture.setSpacingBefore(50);
+        numfacture.setAlignment(Paragraph.ALIGN_CENTER);
+        document.add(numfacture);
+        Anchor providername = new Anchor("Provider Name: "+nom);
         Paragraph paragraph2 = new Paragraph();
         paragraph2.setSpacingBefore(50);
         paragraph2.setAlignment(Paragraph.ALIGN_LEFT);
-        paragraph2.add(anchorTarget);
+        paragraph2.add(providername);
         paragraph2.add(Chunk.NEWLINE);
-        anchorTarget = new Anchor("Provider Adresse: "+adresse);
-        paragraph2.add(anchorTarget);
+        Anchor provideradresse = new Anchor("Provider Adresse: "+adresse);
+        paragraph2.add(provideradresse);
         paragraph2.add(Chunk.NEWLINE);
-        anchorTarget = new Anchor("Provider Tel: "+telephone);
-        paragraph2.add(anchorTarget);
+        Anchor providertel = new Anchor("Provider Tel: "+telephone);
+        paragraph2.add(providertel);
         paragraph2.add(Chunk.NEWLINE);
-        anchorTarget = new Anchor("Purchase Date: "+dateVente);
-        paragraph2.add(anchorTarget);
+        providertel = new Anchor("Purchase Date: "+dateVente);
+        paragraph2.add(providertel);
         paragraph2.add(Chunk.NEWLINE);
         document.add(paragraph2);
-        PdfPTable t = new PdfPTable(4);
- 
-        t.setSpacingBefore(25);
- 
-        t.setSpacingAfter(25);
-        t.setWidthPercentage(90);
+        PdfPTable table = new PdfPTable(4);
+        table.setSpacingBefore(25);
+        table.setSpacingAfter(25);
+        table.setWidthPercentage(90);
         PdfPCell c1 = new PdfPCell(new Phrase("Product Name"));  
-
-        t.addCell(c1);
+        table.addCell(c1);
 
         PdfPCell c2 = new PdfPCell(new Phrase("Quantity"));
 
-        t.addCell(c2);
+        table.addCell(c2);
 
         PdfPCell c3 = new PdfPCell(new Phrase("Unit Price"));
 
-        t.addCell(c3);
+        table.addCell(c3);
         PdfPCell c4 = new PdfPCell(new Phrase("Total Price"));
 
-        t.addCell(c4);
+        table.addCell(c4);
 
-        t.addCell(libelle);
+        table.addCell(libelle);
 
-        t.addCell(qteVendue + " Units");
+        table.addCell(qteVendue + " Units");
 
-        t.addCell("$"+prixVente.toString());
+        table.addCell("$"+prixVente.toString());
         int result = prixVente.intValue() * Integer.parseInt(qteVendue);
-        t.addCell("$"+String.valueOf(result));
-        t.setExtendLastRow(true);
-        document.add(t);
+        table.addCell("$"+String.valueOf(result));
+        table.setExtendLastRow(true);
+        document.add(table);
         document.close();
-        
     }
     
-    public void createPdf2(String libelle,String type,BigDecimal prixAchat,String qteAchat,Date dateAchat,String nom,String telephone,String adresse,int id) throws DocumentException, BadElementException, IOException {
+    public void createFactureAchat(String libelle,String type,BigDecimal prixAchat,String qteAchat,Date dateAchat,String nom,String telephone,String adresse,int id) throws DocumentException, BadElementException, IOException {
         Document document = new Document(PageSize.A4.rotate(), 50, 50, 50, 50);
         ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
         HttpServletResponse response = (HttpServletResponse)externalContext.getResponse();
@@ -166,8 +147,8 @@ public class loginBean implements
         image2.setAlignment(Image.MIDDLE);
         document.add(image1);
         document.add(image2);
-        Font f=new Font(Font.BOLD,30.0f,Font.UNDERLINE);
-        Paragraph paragraph = new Paragraph("Facture N° "+id,f);
+        Font font=new Font(Font.BOLD,30.0f,Font.UNDERLINE);
+        Paragraph paragraph = new Paragraph("Facture N° "+id,font);
         paragraph.setSpacingBefore(50);
         paragraph.setAlignment(Paragraph.ALIGN_CENTER);
         document.add(paragraph);
@@ -187,36 +168,36 @@ public class loginBean implements
         paragraph2.add(anchorTarget);
         paragraph2.add(Chunk.NEWLINE);
         document.add(paragraph2);
-        PdfPTable t = new PdfPTable(4);
+        PdfPTable table = new PdfPTable(4);
  
-        t.setSpacingBefore(25);
+        table.setSpacingBefore(25);
  
-        t.setSpacingAfter(25);
-        t.setWidthPercentage(90);
-        PdfPCell c1 = new PdfPCell(new Phrase("Product Name"));  
+        table.setSpacingAfter(25);
+        table.setWidthPercentage(90);
+        PdfPCell productName = new PdfPCell(new Phrase("Product Name"));  
 
-        t.addCell(c1);
+        table.addCell(productName);
 
-        PdfPCell c2 = new PdfPCell(new Phrase("Quantity"));
+        PdfPCell quantity = new PdfPCell(new Phrase("Quantity"));
 
-        t.addCell(c2);
+        table.addCell(quantity);
 
-        PdfPCell c3 = new PdfPCell(new Phrase("Unit Price"));
+        PdfPCell unitprice = new PdfPCell(new Phrase("Unit Price"));
 
-        t.addCell(c3);
-        PdfPCell c4 = new PdfPCell(new Phrase("Total Price"));
+        table.addCell(unitprice);
+        PdfPCell totalprice = new PdfPCell(new Phrase("Total Price"));
 
-        t.addCell(c4);
+        table.addCell(totalprice);
 
-        t.addCell(libelle);
+        table.addCell(libelle);
 
-        t.addCell(qteAchat + " Units");
+        table.addCell(qteAchat + " Units");
 
-        t.addCell("$"+prixAchat.toString());
+        table.addCell("$"+prixAchat.toString());
         int result = prixAchat.intValue() * Integer.parseInt(qteAchat);
-        t.addCell("$"+String.valueOf(result));
-        t.setExtendLastRow(true);
-        document.add(t);
+        table.addCell("$"+String.valueOf(result));
+        table.setExtendLastRow(true);
+        document.add(table);
         document.close();
         
     }
@@ -226,20 +207,6 @@ public class loginBean implements
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("user");
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", user);
         FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath() + "/index.xhtml");
-    }
-    
-    
-
-public void getImage() throws FileNotFoundException{
-    
-}
-
-public boolean isTestlogin() {
-        return testlogin;
-    }
-
-    public void setTestlogin(boolean testlogin) {
-        this.testlogin = testlogin;
     }
     public UploadedFile getFile() {
         return file;

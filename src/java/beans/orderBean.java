@@ -28,11 +28,11 @@ import javax.servlet.http.HttpServletRequest;
 @ViewScoped
 public class orderBean implements Serializable{
     private List<Achats> sales;
-    private List<Produits> prod;
-    private List<Fournisseurs> prov;
-    private Achats v;
-    private int idprod;
-    private int idprov;
+    private List<Produits> produits;
+    private List<Fournisseurs> providers;
+    private Achats achats;
+    private int idproduits;
+    private int idproviders;
     private boolean showProd;
     private boolean showProv;
     private boolean showForm;
@@ -41,29 +41,29 @@ public class orderBean implements Serializable{
         
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         if(request!=null){
-            if(request.getParameter("idprov") != null){
-                idprov= Integer.parseInt(request.getParameter("idprov"));
-                idprod= Integer.parseInt(request.getParameter("idprod"));
-                v = new Achats();
-                v.setFournisseurs(ProviderDao.findById(idprov));
-                v.setProduits(ProduitsDao.findById(idprod));
+            if(request.getParameter("idproviders") != null){
+                idproviders= Integer.parseInt(request.getParameter("idproviders"));
+                idproduits= Integer.parseInt(request.getParameter("idproduits"));
+                achats = new Achats();
+                achats.setFournisseurs(ProviderDao.findById(idproviders));
+                achats.setProduits(ProduitsDao.findById(idproduits));
                 showProv = false;
                 showProd = false;
                 showForm = true;
-            }else if(request.getParameter("idprod") != null){
-                idprod= Integer.parseInt(request.getParameter("idprod"));
-                prov = ProviderDao.getAll();
+            }else if(request.getParameter("idproduits") != null){
+                idproduits= Integer.parseInt(request.getParameter("idproduits"));
+                providers = ProviderDao.getAll();
                 showProv = true;
                 showProd = false;
                 showForm = false;
             }else{
-                prod = ProduitsDao.getAll();
+                produits = ProduitsDao.getAll();
                 showProd = true;
                 showProv = false;
                 showForm = false;
             }
             if(request.getParameter("id") != null){
-                v = AchatDao.findById(Integer.parseInt(request.getParameter("id")));
+                achats = AchatDao.findById(Integer.parseInt(request.getParameter("id")));
             }else{
                 sales = AchatDao.getAll();
             }
@@ -78,23 +78,23 @@ public class orderBean implements Serializable{
         this.showForm = showForm;
     }
 
-    public Achats getV() {
-        return v;
+    public Achats getAchats() {
+        return achats;
     }
 
-    public void setV(Achats v) {
-        this.v = v;
+    public void setAchats(Achats achats) {
+        this.achats = achats;
     }
 
   
 
 
-    public List<Produits> getProd() {
-        return prod;
+    public List<Produits> getProduits() {
+        return produits;
     }
 
-    public void setProd(List<Produits> prod) {
-        this.prod = prod;
+    public void setProduits(List<Produits> produits) {
+        this.produits = produits;
     }
 
     
@@ -110,27 +110,27 @@ public class orderBean implements Serializable{
         this.showProd = false;
     }
 
-    public List<Fournisseurs> getProv() {
-        return prov;
+    public List<Fournisseurs> getProviders() {
+        return providers;
     }
 
-    public void setProv(List<Fournisseurs> prov) {
-        this.prov = prov;
+    public void setProviders(List<Fournisseurs> providers) {
+        this.providers = providers;
     }
-    public int getIdprod() {
-        return idprod;
-    }
-
-    public void setIdprod(int idprod) {
-        this.idprod = idprod;
+    public int getIdproduits() {
+        return idproduits;
     }
 
-    public int getIdprov() {
-        return idprov;
+    public void setIdproduits(int idproduits) {
+        this.idproduits = idproduits;
     }
 
-    public void setIdprov(int idprov) {
-        this.idprov = idprov;
+    public int getIdproviders() {
+        return idproviders;
+    }
+
+    public void setIdproviders(int idproviders) {
+        this.idproviders = idproviders;
     }
 
     public boolean isShowProv() {

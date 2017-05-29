@@ -9,7 +9,6 @@ import entity.Fournisseurs;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
@@ -22,36 +21,36 @@ import javax.servlet.http.HttpServletRequest;
 @Named
 @ViewScoped
 public class providerBean implements Serializable{
-    private List<Fournisseurs> prov;
-    private Fournisseurs p;
+    private List<Fournisseurs> providers;
+    private Fournisseurs provider;
     @PostConstruct
     public void init() {
-        prov = ProviderDao.getAll();
-        p = new Fournisseurs();
+        providers = ProviderDao.getAll();
+        provider = new Fournisseurs();
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         String id= null;
         if(request!=null){
             if(request.getParameter("id") != null){
                 id= request.getParameter("id");
-                p = ProviderDao.findById(Integer.parseInt(id));
+                provider = ProviderDao.findById(Integer.parseInt(id));
             }
         }
     }
 
-    public List<Fournisseurs> getProv() {
-        return prov;
+    public List<Fournisseurs> getProviders() {
+        return providers;
     }
 
-    public void setProv(List<Fournisseurs> prov) {
-        this.prov = prov;
+    public void setProviders(List<Fournisseurs> providers) {
+        this.providers = providers;
     }
 
-    public Fournisseurs getP() {
-        return p;
+    public Fournisseurs getProvider() {
+        return provider;
     }
 
-    public void setP(Fournisseurs p) {
-        this.p = p;
+    public void setProvider(Fournisseurs provider) {
+        this.provider = provider;
     }
 
     

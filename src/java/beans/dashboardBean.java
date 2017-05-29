@@ -16,7 +16,6 @@ import entity.Ventes;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,8 +41,9 @@ public class dashboardBean implements Serializable{
     private int nbrclient;
     private int totalearning;
     private BarChartModel barModel;
-    private LineChartModel lineModel1;
-    Map<String, Integer> m;
+    private LineChartModel lineModel;
+    Map<String, Integer> hashMap;
+    
     @PostConstruct
     public void init() {
         nbrproduit = ProduitsDao.getNbrProduit();
@@ -54,12 +54,12 @@ public class dashboardBean implements Serializable{
         
     }
 
-    public LineChartModel getLineModel1() {
-        return lineModel1;
+    public LineChartModel getLineModel() {
+        return lineModel;
     }
 
-    public void setLineModel1(LineChartModel lineModel1) {
-        this.lineModel1 = lineModel1;
+    public void setLineModel1(LineChartModel lineModel) {
+        this.lineModel = lineModel;
     }
    
     private BarChartModel initBarModel() {
@@ -67,61 +67,59 @@ public class dashboardBean implements Serializable{
         List<Ventes> v = VentesDao.getAll();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM");
         Calendar cal = Calendar.getInstance();
-        // get starting date
         cal.add(Calendar.MONTH, -6);
-        m = new LinkedHashMap<>();
+        hashMap = new LinkedHashMap<>();
         Map<String, Integer> tot = new LinkedHashMap<>();
         // loop adding one day in each iteration
         for(int i = 0; i< 6; i++){
             cal.add(Calendar.MONTH, 1);
-            m.put(sdf.format(cal.getTime()), 0);
+            hashMap.put(sdf.format(cal.getTime()), 0);
             tot.put(sdf.format(cal.getTime()), 0);
         }
         
         for(int i = 0;i<v.size();i++){
            String[] l = v.get(i).getDateVente().toString().split("-");
            String key = l[0]+"-"+l[1];
-           if(m.get(key) != null){
-               m.put(key, m.get(key) + v.get(i).getPrixVente().intValue() * Integer.parseInt(v.get(i).getQteVendue()));
+           if(hashMap.get(key) != null){
+               hashMap.put(key, hashMap.get(key) + v.get(i).getPrixVente().intValue() * Integer.parseInt(v.get(i).getQteVendue()));
                tot.put(key, tot.get(key) + v.get(i).getPrixVente().intValue() * Integer.parseInt(v.get(i).getQteVendue()));
            }
         }
-        ChartSeries boys = new ChartSeries();
-        boys.setLabel("Orders");
+        ChartSeries data = new ChartSeries();
+        data.setLabel("Orders");
         
         for(int i =0;i<6;i++){
-            boys.set((m.keySet().toArray())[ i ], m.get( (m.keySet().toArray())[ i ] ));
-            m.put( (m.keySet().toArray())[ i ].toString() ,0);
+            data.set((hashMap.keySet().toArray())[ i ], hashMap.get( (hashMap.keySet().toArray())[ i ] ));
+            hashMap.put( (hashMap.keySet().toArray())[ i ].toString() ,0);
         }
         List<Achats> a = AchatDao.getAll();
         
         for(int i = 0;i<a.size();i++){
            String[] l = a.get(i).getDateAchat().toString().split("-");
            String key = l[0]+"-"+l[1];
-           if(m.get(key) != null){
-               m.put(key, m.get(key) + a.get(i).getPrixAchat().intValue() * Integer.parseInt(a.get(i).getQteAchete()));
+           if(hashMap.get(key) != null){
+               hashMap.put(key, hashMap.get(key) + a.get(i).getPrixAchat().intValue() * Integer.parseInt(a.get(i).getQteAchete()));
            }
         }
-        ChartSeries girls = new ChartSeries();
-        ChartSeries girl = new ChartSeries();
-        girls.setLabel("Sales");
+        ChartSeries dataStat = new ChartSeries();
+        ChartSeries dataStatCat = new ChartSeries();
+        dataStat.setLabel("Sales");
         for(int i =0;i<6;i++){
-            girls.set((m.keySet().toArray())[ i ], m.get( (m.keySet().toArray())[ i ] ));
-            girl.set((m.keySet().toArray())[ i ].toString(),m.get( (m.keySet().toArray())[ i ] )- tot.get( (m.keySet().toArray())[ i ] ));
+            dataStat.set((hashMap.keySet().toArray())[ i ], hashMap.get( (hashMap.keySet().toArray())[ i ] ));
+            dataStatCat.set((hashMap.keySet().toArray())[ i ].toString(),hashMap.get( (hashMap.keySet().toArray())[ i ] )- tot.get( (hashMap.keySet().toArray())[ i ] ));
     
         }
-        lineModel1 = new LineChartModel();
-        lineModel1.addSeries(girl);
-        lineModel1.setTitle("Category Chart");
-        lineModel1.setLegendPosition("e");
-        lineModel1.setShowPointLabels(true);
-        lineModel1.getAxes().put(AxisType.X, new CategoryAxis("Years"));
-        Axis yAxis = lineModel1.getAxis(AxisType.Y);
-        yAxis.setLabel("Births");
+        lineModel = new LineChartModel();
+        lineModel.addSeries(dataStatCat);
+        lineModel.setTitle("Category Chart");
+        lineModel.setLegendPosition("e");
+        lineModel.setShowPointLabels(true);
+        lineModel.getAxes().put(AxisType.X, new CategoryAxis("Years"));
+        Axis yAxis = lineModel.getAxis(AxisType.Y);
         yAxis.setMin(0);
         yAxis.setMax(150000);
-        model.addSeries(boys);
-        model.addSeries(girls);
+        model.addSeries(data);
+        model.addSeries(dataStat);
         return model;
     }
     private void createBarModels() {
@@ -135,10 +133,8 @@ public class dashboardBean implements Serializable{
         barModel.setLegendPosition("ne");
          
         Axis xAxis = barModel.getAxis(AxisType.X);
-        xAxis.setLabel("Gender");
          
         Axis yAxis = barModel.getAxis(AxisType.Y);
-        yAxis.setLabel("Births");
         yAxis.setMin(0);
         yAxis.setMax(2500000);
     }

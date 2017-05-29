@@ -4,24 +4,43 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/benrh/Documents/NetBeansProjects/TestHibernate/src/java/dao/VentesDao.java</file>
-            <file>file:/C:/Users/benrh/Documents/NetBeansProjects/TestHibernate/src/java/hibernate.reveng.xml</file>
             <file>file:/C:/Users/benrh/Documents/NetBeansProjects/TestHibernate/web/provider.xhtml</file>
             <file>file:/C:/Users/benrh/Documents/NetBeansProjects/TestHibernate/src/java/dao/ProviderDao.java</file>
             <file>file:/C:/Users/benrh/Documents/NetBeansProjects/TestHibernate/web/client.xhtml</file>
             <file>file:/C:/Users/benrh/Documents/NetBeansProjects/TestHibernate/src/java/beans/productBeanRequest.java</file>
-            <file>file:/C:/Users/benrh/Documents/NetBeansProjects/TestHibernate/web/produit-add.xhtml</file>
+            <file>file:/C:/Users/benrh/Documents/NetBeansProjects/TestHibernate/src/java/beans/salesBean.java</file>
+            <file>file:/C:/Users/benrh/Documents/NetBeansProjects/TestHibernate/src/java/beans/clientBean.java</file>
+            <file>file:/C:/Users/benrh/Documents/NetBeansProjects/TestHibernate/web/client-update.xhtml</file>
+            <file>file:/C:/Users/benrh/Documents/NetBeansProjects/TestHibernate/web/index.xhtml</file>
             <file>file:/C:/Users/benrh/Documents/NetBeansProjects/TestHibernate/src/java/beans/loginBean.java</file>
+            <file>file:/C:/Users/benrh/Documents/NetBeansProjects/TestHibernate/src/java/beans/providerBean.java</file>
+            <file>file:/C:/Users/benrh/Documents/NetBeansProjects/TestHibernate/web/login.xhtml</file>
             <file>file:/C:/Users/benrh/Documents/NetBeansProjects/TestHibernate/src/java/hibernate.cfg.xml</file>
-            <file>file:/C:/Users/benrh/Documents/NetBeansProjects/TestHibernate/src/java/beans/clientBeanRequest.java</file>
-            <file>file:/C:/Users/benrh/Documents/NetBeansProjects/TestHibernate/src/java/entity/Utilisateurs.java</file>
-            <file>file:/C:/Users/benrh/Documents/NetBeansProjects/TestHibernate/web/menu.xhtml</file>
-            <file>file:/C:/Users/benrh/Documents/NetBeansProjects/TestHibernate/src/java/beans/productBean.java</file>
+            <file>file:/C:/Users/benrh/Documents/NetBeansProjects/TestHibernate/web/order-update.xhtml</file>
             <file>file:/C:/Users/benrh/Documents/NetBeansProjects/TestHibernate/src/java/dao/ClientDao.java</file>
+            <file>file:/C:/Users/benrh/Documents/NetBeansProjects/TestHibernate/web/sales-add.xhtml</file>
             <file>file:/C:/Users/benrh/Documents/NetBeansProjects/TestHibernate/web/produit.xhtml</file>
             <file>file:/C:/Users/benrh/Documents/NetBeansProjects/TestHibernate/src/java/dao/AchatDao.java</file>
             <file>file:/C:/Users/benrh/Documents/NetBeansProjects/TestHibernate/web/sales.xhtml</file>
             <file>file:/C:/Users/benrh/Documents/NetBeansProjects/TestHibernate/web/order.xhtml</file>
+            <file>file:/C:/Users/benrh/Documents/NetBeansProjects/TestHibernate/src/java/beans/salesBeanRequest.java</file>
+            <file>file:/C:/Users/benrh/Documents/NetBeansProjects/TestHibernate/src/java/hibernate.reveng.xml</file>
+            <file>file:/C:/Users/benrh/Documents/NetBeansProjects/TestHibernate/src/java/beans/orderBean.java</file>
+            <file>file:/C:/Users/benrh/Documents/NetBeansProjects/TestHibernate/web/provider-add.xhtml</file>
+            <file>file:/C:/Users/benrh/Documents/NetBeansProjects/TestHibernate/web/produit-update.xhtml</file>
+            <file>file:/C:/Users/benrh/Documents/NetBeansProjects/TestHibernate/src/java/beans/providerBeanRequest.java</file>
+            <file>file:/C:/Users/benrh/Documents/NetBeansProjects/TestHibernate/web/produit-add.xhtml</file>
+            <file>file:/C:/Users/benrh/Documents/NetBeansProjects/TestHibernate/src/java/beans/dashboardBean.java</file>
+            <file>file:/C:/Users/benrh/Documents/NetBeansProjects/TestHibernate/web/provider-update.xhtml</file>
+            <file>file:/C:/Users/benrh/Documents/NetBeansProjects/TestHibernate/web/client-add.xhtml</file>
+            <file>file:/C:/Users/benrh/Documents/NetBeansProjects/TestHibernate/src/java/beans/clientBeanRequest.java</file>
+            <file>file:/C:/Users/benrh/Documents/NetBeansProjects/TestHibernate/src/java/entity/Utilisateurs.java</file>
+            <file>file:/C:/Users/benrh/Documents/NetBeansProjects/TestHibernate/web/menu.xhtml</file>
+            <file>file:/C:/Users/benrh/Documents/NetBeansProjects/TestHibernate/src/java/beans/productBean.java</file>
+            <file>file:/C:/Users/benrh/Documents/NetBeansProjects/TestHibernate/src/java/beans/orderBeanRequest.java</file>
+            <file>file:/C:/Users/benrh/Documents/NetBeansProjects/TestHibernate/web/order-add.xhtml</file>
             <file>file:/C:/Users/benrh/Documents/NetBeansProjects/TestHibernate/src/java/entity/Utilisateurs.hbm.xml</file>
+            <file>file:/C:/Users/benrh/Documents/NetBeansProjects/TestHibernate/web/sales-update.xhtml</file>
             <file>file:/C:/Users/benrh/Documents/NetBeansProjects/TestHibernate/web/profil.xhtml</file>
         </group>
     </open-files>

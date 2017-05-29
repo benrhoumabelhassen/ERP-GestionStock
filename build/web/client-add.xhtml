@@ -68,19 +68,19 @@
                   
                   <tr style="width:100%;">
                       <td style="width: 20%;padding: 5px;"><p:outputLabel value="Client Name"/></td>
-                      <td style="width: 80%;padding: 5px;"><p:inputText style="width:80%;box-shadow: inset 0 0px 0px #8f8f8f !important;" value="#{clientBean.c.nom}"/></td>
+                      <td style="width: 80%;padding: 5px;"><p:inputText style="width:80%;box-shadow: inset 0 0px 0px #8f8f8f !important;" value="#{clientBean.client.nom}"/></td>
                   </tr>
                   <tr style="width:100%;">
                       <td style="width: 20%;padding: 5px;"><p:outputLabel value="Client Tel"/></td>
-                      <td style="width: 80%;padding: 5px;"><p:inputText style="width:80%;box-shadow: inset 0 0px 0px #8f8f8f !important;" value="#{clientBean.c.telephone}"/></td>
+                      <td style="width: 80%;padding: 5px;"><p:inputText style="width:80%;box-shadow: inset 0 0px 0px #8f8f8f !important;" value="#{clientBean.client.telephone}"/></td>
                   </tr>
                   <tr style="width:100%;">
                       <td style="width: 20%;padding: 5px;"><p:outputLabel value="Client Address"/></td>
-                      <td style="width: 80%;padding: 5px;"><p:inputTextarea  style="width:80%;box-shadow: inset 0 0px 0px #8f8f8f !important;" value="#{clientBean.c.adresse}"/></td>
+                      <td style="width: 80%;padding: 5px;"><p:inputTextarea  style="width:80%;box-shadow: inset 0 0px 0px #8f8f8f !important;" value="#{clientBean.client.adresse}"/></td>
                   </tr>
                   <tr style="width:100%;">
                       <td style="width: 20%;padding: 5px;"></td>
-                      <td style="width: 80%;padding: 5px;"><p:commandButton action="#{clientBeanRequest.addC(clientBean.c)}" ajax="false" value="Add" style="margin-left: 5px;width: 100px;height: 30px;" styleClass="ui-priority-primary" /></td>
+                      <td style="width: 80%;padding: 5px;"><p:commandButton action="#{clientBeanRequest.addC(clientBean.client)}" ajax="false" value="Add" style="margin-left: 5px;width: 100px;height: 30px;" styleClass="ui-priority-primary" /></td>
                   </tr>
               </table>
               

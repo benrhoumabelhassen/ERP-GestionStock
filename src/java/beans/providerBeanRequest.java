@@ -8,7 +8,6 @@ package beans;
 import dao.ProviderDao;
 import entity.Fournisseurs;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 /**
@@ -18,19 +17,19 @@ import javax.inject.Named;
 @Named
 @RequestScoped
 public class providerBeanRequest {
-    public String delete(Fournisseurs p){
-        ProviderDao.delete(p);
+    public String delete(Fournisseurs provider){
+        ProviderDao.delete(provider);
         return "provider.xhtml?faces-redirect=true";
     }
     public String update(int id){
         return "provider-update.xhtml?faces-redirect=true&id="+id;
     }
-    public String updateP(Fournisseurs p){
-        ProviderDao.update(p);
+    public String updateProvider(Fournisseurs provider){
+        ProviderDao.update(provider);
         return "provider.xhtml?faces-redirect=true";
     }
-    public String addP(Fournisseurs p){
-        ProviderDao.insert(p);
+    public String addProvider(Fournisseurs provider){
+        ProviderDao.insert(provider);
         return "provider.xhtml?faces-redirect=true"; 
     }
 }
